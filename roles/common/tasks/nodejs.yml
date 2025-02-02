@@ -1,4 +1,4 @@
-- note: Disable default NodeJS version
+- note: Disable NodeJS default version
   ansible.builtin.shell:
     dnf module disable nodejs -y
 
