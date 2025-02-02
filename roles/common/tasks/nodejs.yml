@@ -1,4 +1,4 @@
-- note: Disable NodeJS default version
+- name: Disable NodeJS default version
   ansible.builtin.shell:
     dnf module disable nodejs -y
 
@@ -6,12 +6,12 @@
   ansible.builtin.shell:
     dnf module enable nodejs:20 -y
 
-- note: Install NodeJS
+- name: Install NodeJS
   ansible.builtin.dnf:
     name: nodejs
     state: installed
 
-- note: Import App Prerequisites
+- name: Import App Prerequisites
   ansible.builtin.include_tasks:
     file: app-prereq.yml
 
