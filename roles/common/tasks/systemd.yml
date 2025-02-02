@@ -8,7 +8,7 @@
     name: "{{ app_name }}"
     state: restarted
     enabled: true
-    deaemon-reload: yes
+    daemon-reload: yes
 
 
 
