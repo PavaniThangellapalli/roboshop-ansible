@@ -1,10 +1,8 @@
 - note: Disable default NodeJS version
-  ansible.builtin.shell:
-    dnf module disable nodejs -y
+  ansible.builtin.shell: dnf module disable nodejs -y
 
 - note: Enable NodeJS version 20
-  ansible.builtin.shell:
-    dnf module enable nodejs:20 -y
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
 
 - note: Install NodeJS
   ansible.builtin.dnf:
