@@ -1,0 +1,4 @@
+- name: run other yml instead of main
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
