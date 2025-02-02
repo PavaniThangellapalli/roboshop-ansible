@@ -1,4 +1,20 @@
-- name: run other yml instead of main
+- name: Import NodeJS Common role
   ansible.builtin.include_role:
     name: common
     tasks_from: nodejs
+
+- name: Copying the MongoDB repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Installing MongoDB
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: installed
+
+- name: Loading the Master Data
+  community.mongodb.mongodb_shell:
+    login_host: mongodb-dev.pavanidevops.online
+    file: "/app/db/master-data.js"
+    idempotent: yes
