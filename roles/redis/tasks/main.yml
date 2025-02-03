@@ -4,7 +4,7 @@
 
 - name: Enable version7 of Redis
   ansible.builtin.shell:
-    dnf enable enable redis:7 -y
+    dnf module enable redis:7 -y
 
 - name: Install Redis
   ansible.builtin.dnf:
