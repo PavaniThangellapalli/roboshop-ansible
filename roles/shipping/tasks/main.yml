@@ -1,0 +1,36 @@
+- name: Import Java Common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: java
+
+- name: Installing MySQL
+  ansible.builtin.dnf:
+   name: mysql
+   state: installed
+
+- name: Load Schema
+  community.mysql.mysql_db:
+  state: import
+  name: all
+  target: /app/db/schema.sql
+  login_host: mysql-dev.pavanidevops.online
+  login_user: root
+  login_password: RoboShop@1
+
+- name: Load App User
+  community.mysql.mysql_db:
+  state: import
+  name: all
+  target: /app/db/app-user.sql
+  login_host: mysql-dev.pavanidevops.online
+  login_user: root
+  login_password: RoboShop@1
+
+- name: Load Master Data
+  community.mysql.mysql_db:
+  state: import
+  name: all
+  target: /app/db/master-data.sql
+  login_host: mysql-dev.pavanidevops.online
+  login_user: root
+  login_password: RoboShop@1
