@@ -1,9 +1,3 @@
-
-#echo Adding User
-#rabbitmqctl add_user roboshop roboshop123 &>>log_file
-#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>log_file
-#Status_Print $?
-
 - name: Copying RabbitMQ repo file
   ansible.builtin.copy:
     src: rabbitmq.repo
@@ -29,5 +23,6 @@
     read_priv: .*
     write_priv: .*
     state: present
+
 
 
