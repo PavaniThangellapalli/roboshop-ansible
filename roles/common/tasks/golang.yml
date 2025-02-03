@@ -9,6 +9,8 @@
 
 - name: Installing GoLang Dependencies
   ansible.builtin.shell: go mod init dispatch; go get; go build
+  args:
+    chdir: /app
 
 - name: Setup Systemd service
   ansible.builtin.include_tasks:
