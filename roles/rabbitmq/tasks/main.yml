@@ -1,0 +1,33 @@
+
+#echo Adding User
+#rabbitmqctl add_user roboshop roboshop123 &>>log_file
+#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>log_file
+#Status_Print $?
+
+- name: Copying RabbitMQ repo file
+  ansible.builtin.copy:
+    src: rabbitmq.repo
+    dest: /etc/yum.repos.d/rabbitmq.repo
+
+- name: Install RabbitMQ
+  ansible.builtin.dnf:
+    name: rabbitmq-server
+    state: installed
+
+- name: Start RabbbitMQ service
+  ansible.builtin.systemd_service:
+    name: rabbitmq-server
+    enabled: true
+    state: restarted
+
+- name: Add Application user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+
+
