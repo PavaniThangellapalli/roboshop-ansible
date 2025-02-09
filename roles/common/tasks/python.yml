@@ -13,6 +13,7 @@
 - name: Installing Python Dependencies
   ansible.builtin.pip:
     requirements: /app/requirements.txt
+    executable: pip3
 
 - name: Setup Systemd service
   ansible.builtin.include_tasks:
